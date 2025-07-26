@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -16,6 +16,11 @@ export default function Header() {
     { name: "Hardware", href: "/?category=Hardware" },
     { name: "Security", href: "/?category=Security" },
   ];
+
+  const handleNavClick = (href: string) => {
+    setLocation(href);
+    setIsMobileMenuOpen(false);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,11 +46,13 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href}>
-                <span className="text-slate-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors cursor-pointer">
-                  {item.name}
-                </span>
-              </Link>
+              <span
+                key={item.name}
+                onClick={() => handleNavClick(item.href)}
+                className="text-slate-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+              >
+                {item.name}
+              </span>
             ))}
           </nav>
 
@@ -80,14 +87,13 @@ export default function Header() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-200">
               {navItems.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  <span
-                    className="text-slate-700 hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </span>
-                </Link>
+                <span
+                  key={item.name}
+                  onClick={() => handleNavClick(item.href)}
+                  className="text-slate-700 hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer"
+                >
+                  {item.name}
+                </span>
               ))}
               <div className="px-3 py-2">
                 <form onSubmit={handleSearch} className="relative">

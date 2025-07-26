@@ -30,9 +30,9 @@ export default function Home() {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    // Update URL without page reload
+    // Update URL without page reload using Wouter's setLocation
     const newUrl = category ? `/?category=${category}` : "/";
-    window.history.pushState({}, "", newUrl);
+    window.history.replaceState({}, "", newUrl);
   };
 
   return (

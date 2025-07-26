@@ -1,7 +1,9 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Twitter, Linkedin, Github } from "lucide-react";
 
 export default function Footer() {
+  const [location, setLocation] = useLocation();
+  
   const categoryLinks = [
     { name: "Artificial Intelligence", href: "/?category=AI" },
     { name: "Startups", href: "/?category=Startups" },
@@ -15,6 +17,10 @@ export default function Footer() {
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },
   ];
+
+  const handleLinkClick = (href: string) => {
+    setLocation(href);
+  };
 
   return (
     <footer className="bg-white border-t border-slate-200 mt-16">
@@ -58,11 +64,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {categoryLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href}>
-                    <span className="text-slate-600 hover:text-primary transition-colors cursor-pointer">
-                      {link.name}
-                    </span>
-                  </Link>
+                  <span 
+                    onClick={() => handleLinkClick(link.href)}
+                    className="text-slate-600 hover:text-primary transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -73,11 +80,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href}>
-                    <span className="text-slate-600 hover:text-primary transition-colors cursor-pointer">
-                      {link.name}
-                    </span>
-                  </Link>
+                  <span 
+                    onClick={() => handleLinkClick(link.href)}
+                    className="text-slate-600 hover:text-primary transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </span>
                 </li>
               ))}
             </ul>
