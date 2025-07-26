@@ -1,0 +1,56 @@
+**Context:** I want to build a simple news portal focused on tech news. The articles will be added manually via API (not through a CMS), and users will only be able to read them (no login). The front end should be built using React. The back end should use Node.js (Express). Data should be stored in PostgreSQL.
+
+**Instructions:**
+Please create a starter project using a monorepo structure with both client and server folders.
+
+Add inline comments throughout the code to explain how it works — especially the complex parts, or where a beginner may get confused.
+
+### Backend (`/server`)
+- Use **Express.js**
+- Connect to **PostgreSQL** (via `pg` npm package)
+- Create these API endpoints:
+  - `GET /api/news` → fetch all news articles
+  - `GET /api/news/:slug` → fetch one article based on slug
+  - `POST /api/news` → add an article (only allowed if `Authorization: Bearer <API_KEY>` header is valid)
+- Use `.env` file to store DB credentials and API key securely
+- News table schema: `id`, `title`, `slug`, `content`, `cover_image`, `category`, `source`, `published_at`
+
+### Frontend (`/client`)
+- Use **React** (preferably with Vite for fast dev)
+- Page `/` → display list of tech news
+- Page `/news/:slug` → display full content of article
+- Page `/admin` → simple dashboard to view all news (read-only)
+- Required components: `NewsList`, `NewsItem`, `NewsDetail`, `AdminDashboard`
+
+### Shared Setup
+- Setup project scripts so `npm run dev` runs both frontend and backend (e.g., using `concurrently`)
+- Include `.replit` and `replit.nix` to make it fully runnable inside Replit
+- Include a `README.md` that explains:
+  - folder structure
+  - how to run
+  - how to post news using the API
+
+### Format:
+Please return the output in the form of a complete Replit-ready file structure. Each file should include inline comments that explain what's happening.
+
+### Boundaries:
+- No login or user accounts needed
+- No content management UI (API-only for adding news)
+- No auto-crawling; articles are added manually via API
+
+### Example JSON for POST /api/news
+```json
+{
+  "title": "ChatGPT Launches New Version",
+  "slug": "chatgpt-new-version",
+  "content": "<p>OpenAI just <strong>released</strong> a new version of ChatGPT with major improvements...</p>",
+  "cover_image": "https://example.com/image.jpg",
+  "category": "AI",
+  "source": "OpenAI Blog",
+  "published_at": "2025-07-25T09:00:00Z"
+}
+```
+
+---
+
+Generate the project according to the instructions above, with inline comments and simple structure so I can continue building on it.
