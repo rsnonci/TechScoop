@@ -22,6 +22,11 @@ export const insertNewsSchema = createInsertSchema(news).omit({
   id: true,
   created_at: true,
   updated_at: true,
+}).extend({
+  published_at: z.union([
+    z.string().transform((str) => new Date(str)),
+    z.date()
+  ]).optional(),
 });
 
 // Types for TypeScript

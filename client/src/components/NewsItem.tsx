@@ -34,7 +34,7 @@ export default function NewsItem({ article }: NewsItemProps) {
             {article.category}
           </Badge>
           <span className="text-slate-500 text-sm">
-            {formatDate(article.published_at)}
+            {formatDate(article.published_at.toString())}
           </span>
         </div>
         

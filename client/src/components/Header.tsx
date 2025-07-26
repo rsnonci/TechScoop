@@ -42,9 +42,9 @@ export default function Header() {
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <Link key={item.name} href={item.href}>
-                <a className="text-slate-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+                <span className="text-slate-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors cursor-pointer">
                   {item.name}
-                </a>
+                </span>
               </Link>
             ))}
           </nav>
@@ -81,12 +81,12 @@ export default function Header() {
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-200">
               {navItems.map((item) => (
                 <Link key={item.name} href={item.href}>
-                  <a
-                    className="text-slate-700 hover:text-primary block px-3 py-2 text-base font-medium"
+                  <span
+                    className="text-slate-700 hover:text-primary block px-3 py-2 text-base font-medium cursor-pointer"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
-                  </a>
+                  </span>
                 </Link>
               ))}
               <div className="px-3 py-2">

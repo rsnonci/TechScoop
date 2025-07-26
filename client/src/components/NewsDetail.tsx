@@ -49,7 +49,7 @@ export default function NewsDetail({ article, onBack }: NewsDetailProps) {
               {article.category}
             </Badge>
             <span className="text-slate-500 text-sm ml-4">
-              {formatDate(article.published_at)}
+              {formatDate(article.published_at.toString())}
             </span>
           </div>
           

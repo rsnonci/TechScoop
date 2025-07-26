@@ -32,7 +32,7 @@ export default function HeroSection({ featuredArticle }: HeroSectionProps) {
                 {featuredArticle.category}
               </Badge>
               <span className="text-slate-500 text-sm ml-4">
-                {formatDate(featuredArticle.published_at)}
+                {formatDate(featuredArticle.published_at.toString())}
               </span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-800 mb-4 leading-tight">

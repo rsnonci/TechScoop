@@ -199,7 +199,7 @@ export default function AdminDashboard() {
                         {article.source}
                       </td>
                       <td className="px-6 py-4 text-sm text-slate-600">
-                        {formatDate(article.published_at)}
+                        {formatDate(article.published_at.toString())}
                       </td>
                       <td className="px-6 py-4">
                         <Badge className="bg-green-100 text-green-800">

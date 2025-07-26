@@ -59,9 +59,9 @@ export default function Footer() {
               {categoryLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>
-                    <a className="text-slate-600 hover:text-primary transition-colors">
+                    <span className="text-slate-600 hover:text-primary transition-colors cursor-pointer">
                       {link.name}
-                    </a>
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -74,9 +74,9 @@ export default function Footer() {
               {companyLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>
-                    <a className="text-slate-600 hover:text-primary transition-colors">
+                    <span className="text-slate-600 hover:text-primary transition-colors cursor-pointer">
                       {link.name}
-                    </a>
+                    </span>
                   </Link>
                 </li>
               ))}
