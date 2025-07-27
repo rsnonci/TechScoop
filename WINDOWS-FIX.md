@@ -15,10 +15,18 @@ Ubah script `dev` di file `package.json`:
 "dev": "cross-env NODE_ENV=development tsx watch server/index.ts",
 ```
 
-### 2. Install cross-env dependency
+### 2. Install dependencies
 ```cmd
-npm install cross-env
+npm install cross-env postgres
 ```
+
+### 3. WebSocket Error Fix (CRITICAL for Windows)
+Jika Anda mendapat error WebSocket seperti:
+```
+ErrorEvent { ECONNREFUSED, _url: 'wss://localhost/v2' }
+```
+
+Gunakan alternative database configuration yang sudah disediakan.
 
 ### 3. Update .env file
 Pastikan file `.env` Anda memiliki:

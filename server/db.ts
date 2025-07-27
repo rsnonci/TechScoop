@@ -3,9 +3,6 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import ws from "ws";
 import * as schema from "@shared/schema";
 
-// Configure Neon for different environments
-neonConfig.webSocketConstructor = ws;
-
 // Enhanced environment variable detection for Windows
 const getDatabaseUrl = () => {
   // Try different environment variable sources
@@ -31,15 +28,41 @@ const databaseUrl = getDatabaseUrl();
 const isNeonDatabase = databaseUrl.includes('neon.tech') || databaseUrl.includes('neon.database');
 const isLocalDatabase = databaseUrl.includes('localhost') || databaseUrl.includes('127.0.0.1');
 
+// Configure Neon ONLY if it's a Neon database and not in problematic Windows environment
 if (isNeonDatabase) {
-  // Configure for Neon serverless
-  neonConfig.webSocketConstructor = ws;
-  neonConfig.useSecureWebSocket = true;
+  // Windows WebSocket fix - disable WebSocket for Windows if causing issues
+  const isWindows = process.platform === 'win32';
+  
+  if (!isWindows) {
+    neonConfig.webSocketConstructor = ws;
+    neonConfig.useSecureWebSocket = true;
+  } else {
+    // For Windows, disable WebSocket and use HTTP pooling
+    console.log("Windows detected: Using HTTP pooling instead of WebSocket for Neon");
+    neonConfig.webSocketConstructor = undefined;
+    neonConfig.useSecureWebSocket = false;
+  }
 }
 
-export const pool = new Pool({ 
-  connectionString: databaseUrl,
-  ssl: isNeonDatabase ? { rejectUnauthorized: false } : false
-});
+// Create pool with Windows-compatible settings
+const poolConfig: any = { 
+  connectionString: databaseUrl
+};
 
+// SSL configuration
+if (isNeonDatabase) {
+  poolConfig.ssl = { rejectUnauthorized: false };
+} else if (!isLocalDatabase) {
+  poolConfig.ssl = true;
+}
+
+// Windows-specific database configuration
+if (process.platform === 'win32' && isNeonDatabase) {
+  // Force HTTP mode for Windows + Neon
+  poolConfig.connectionTimeoutMillis = 30000;
+  poolConfig.idleTimeoutMillis = 30000;
+  poolConfig.max = 1; // Single connection for Windows
+}
+
+export const pool = new Pool(poolConfig);
 export const db = drizzle({ client: pool, schema });
