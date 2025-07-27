@@ -41,6 +41,53 @@ A modern tech news portal built with React and Express.js, featuring API-based a
 
 ### Installation
 
+#### Setup di Windows
+
+1. **Install Node.js**:
+   - Download Node.js 20+ dari [nodejs.org](https://nodejs.org/)
+   - Pastikan npm terinstall dengan menjalankan: `node --version` dan `npm --version`
+
+2. **Clone atau download project ini**
+
+3. **Install dependencies**:
+```cmd
+npm install
+```
+
+4. **Set up environment variables**:
+```cmd
+# Copy file .env.example ke .env
+copy .env.example .env
+
+# Edit file .env dengan text editor (notepad, VS Code, dll)
+# Isi dengan database credentials dan API key Anda
+```
+
+Required environment variables dalam file `.env`:
+```
+DATABASE_URL=postgresql://username:password@localhost:5432/techdaily
+API_KEY=your_secret_api_key_here
+```
+
+5. **Setup PostgreSQL Database**:
+   - Install PostgreSQL dari [postgresql.org](https://www.postgresql.org/download/windows/)
+   - Atau gunakan database cloud seperti Neon, Supabase, atau Railway
+   - Update `DATABASE_URL` di file `.env` dengan connection string yang benar
+
+6. **Setup database schema**:
+```cmd
+npm run db:push
+```
+
+7. **Start development server**:
+```cmd
+npm run dev
+```
+
+The application will be available at `http://localhost:5000`
+
+#### Setup di Linux/Mac
+
 1. Install dependencies:
 ```bash
 npm install
@@ -54,10 +101,6 @@ cp .env.example .env
 # Edit .env with your database credentials and API key
 ```
 
-Required environment variables:
-- `DATABASE_URL`: PostgreSQL connection string
-- `API_KEY`: Secret key for API authentication
-
 3. Set up the database:
 ```bash
 npm run db:push
@@ -67,8 +110,6 @@ npm run db:push
 ```bash
 npm run dev
 ```
-
-The application will be available at `http://localhost:5000`
 
 ## API Endpoints
 

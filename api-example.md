@@ -5,7 +5,7 @@
 ```bash
 curl -X POST http://localhost:5000/api/news \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer Th1sIsP4ssw0rd" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{
     "title": "Judul Artikel Anda",
     "slug": "judul-artikel-anda",
@@ -23,7 +23,7 @@ curl -X POST http://localhost:5000/api/news \
 2. **URL**: `http://localhost:5000/api/news`
 3. **Headers**:
    - `Content-Type: application/json`
-   - `Authorization: Bearer Th1sIsP4ssw0rd`
+   - `Authorization: Bearer YOUR_API_KEY`
 4. **Body** (raw JSON):
 ```json
 {
@@ -55,7 +55,7 @@ const createArticle = async () => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer Th1sIsP4ssw0rd'
+        'Authorization': 'Bearer YOUR_API_KEY'
       }
     });
     
@@ -77,7 +77,7 @@ import json
 url = 'http://localhost:5000/api/news'
 headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer Th1sIsP4ssw0rd'
+    'Authorization': 'Bearer YOUR_API_KEY'
 }
 
 data = {
@@ -138,6 +138,5 @@ else:
 ```
 
 ## Password Autentikasi:
-**Th1sIsP4ssw0rd**
-
-Selalu gunakan password ini dalam header Authorization sebagai Bearer token.
+Password autentikasi Anda tersimpan dalam environment variable `API_KEY`. 
+Gunakan password yang sama seperti saat setup aplikasi ini dalam header Authorization sebagai Bearer token.
