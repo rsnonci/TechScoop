@@ -40,7 +40,13 @@ cd techdaily
 npm install
 ```
 
-### 3. Setup Environment Variables
+### 3. Update package.json untuk Windows
+Buka `package.json` dan ubah script `dev`:
+```json
+"dev": "cross-env NODE_ENV=development tsx watch server/index.ts"
+```
+
+### 4. Setup Environment Variables
 ```cmd
 # Copy file environment
 copy .env.example .env
@@ -54,11 +60,17 @@ DATABASE_URL=postgresql://username:password@localhost:5432/techdaily
 # API Authentication
 API_KEY=your_secret_api_key_here
 
+# Port Configuration (REQUIRED untuk Windows)
+PORT=5000
+
+# Environment
+NODE_ENV=development
+
 # Jika menggunakan database cloud, ganti dengan connection string dari provider
 # Contoh Neon: DATABASE_URL=postgresql://user:pass@ep-xxx.neon.tech/techdaily?sslmode=require
 ```
 
-### 4. Setup Database
+### 5. Setup Database
 ```cmd
 # Buat schema database
 npm run db:push
@@ -69,7 +81,7 @@ Jika ada error, pastikan:
 - Database connection string benar
 - Database `techdaily` sudah dibuat (atau buat manual)
 
-### 5. Start Application
+### 6. Start Application
 ```cmd
 npm run dev
 ```

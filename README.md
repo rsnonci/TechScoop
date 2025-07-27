@@ -49,12 +49,19 @@ A modern tech news portal built with React and Express.js, featuring API-based a
 
 2. **Clone atau download project ini**
 
-3. **Install dependencies**:
+3. **Install dependencies dan cross-env**:
 ```cmd
 npm install
+npm install cross-env
 ```
 
-4. **Set up environment variables**:
+4. **Update package.json script untuk Windows**:
+   Ubah script `dev` di `package.json` menjadi:
+   ```json
+   "dev": "cross-env NODE_ENV=development tsx watch server/index.ts"
+   ```
+
+5. **Set up environment variables**:
 ```cmd
 # Copy file .env.example ke .env
 copy .env.example .env
