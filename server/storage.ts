@@ -39,7 +39,15 @@ export class DatabaseStorage implements IStorage {
 
   // News operations
   async getAllNews(): Promise<News[]> {
-    return await db.select().from(news).orderBy(desc(news.published_at));
+    try {
+      console.log("DatabaseStorage: Executing getAllNews query");
+      const result = await db.select().from(news).orderBy(desc(news.published_at));
+      console.log("DatabaseStorage: Query successful, found", result.length, "articles");
+      return result;
+    } catch (error) {
+      console.error("DatabaseStorage: Error in getAllNews:", error);
+      throw error;
+    }
   }
 
   async getNewsBySlug(slug: string): Promise<News | undefined> {

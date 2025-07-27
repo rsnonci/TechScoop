@@ -29,21 +29,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // GET /api/news - Fetch all news articles
   app.get("/api/news", async (req, res) => {
     try {
+      console.log("Fetching news articles...");
       const { category } = req.query;
       
       let articles;
       if (category && typeof category === 'string') {
+        console.log("Fetching articles for category:", category);
         articles = await storage.getNewsByCategory(category);
       } else {
+        console.log("Fetching all articles");
         articles = await storage.getAllNews();
       }
       
+      console.log("Found articles:", articles.length);
       res.json(articles);
     } catch (error) {
-      console.error("Error fetching news:", error);
+      console.error("Detailed error fetching news:", error);
+      
+      // Enhanced error reporting
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      const errorStack = error instanceof Error ? error.stack : "No stack trace";
+      
+      console.error("Error stack:", errorStack);
+      
       res.status(500).json({ 
         message: "Failed to fetch news articles",
-        error: error instanceof Error ? error.message : "Unknown error"
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? errorStack : undefined
       });
     }
   });
