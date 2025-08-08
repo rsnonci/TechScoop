@@ -18,3 +18,19 @@
     "noEmit": false
   },
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2022",               // minimal
+//     "module": "NodeNext",             // penting!
+//     "moduleResolution": "NodeNext",   // penting!
+//     "outDir": "dist",                 // optional
+//     "rootDir": ".",                   // optional
+//     "esModuleInterop": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "strict": true,
+//     "skipLibCheck": true
+//   },
+//   "include": ["server", "shared", "types"],
+//   "exclude": ["node_modules", "dist"]
+// }
