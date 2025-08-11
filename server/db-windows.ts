@@ -2,7 +2,7 @@
 // Use this file if you're experiencing WebSocket errors on Windows
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import * as schema from "@shared/schema";
+import * as schema from "@shared/schema.js";
 
 // Enhanced environment variable detection for Windows
 const getDatabaseUrl = () => {

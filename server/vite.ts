@@ -94,9 +94,25 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // 1️⃣ Serve assets (CSS/JS/images) dengan cache panjang
+  app.use(
+    "/assets",
+    express.static(path.join(distPath, "assets"), {
+      immutable: true,
+      maxAge: "1y",
+    })
+  );
 
+  // 2️⃣ Serve file statis lain dengan cache pendek
+  app.use(
+    express.static(distPath, {
+      maxAge: "1h",
+    })
+  );
+
+  // 3️⃣ SPA Fallback → selalu kirim index.html
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
+

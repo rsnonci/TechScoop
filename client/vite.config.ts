@@ -43,6 +43,7 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   root: path.resolve(__dirname), // ini tetap /client
+  base: '/', // penting supaya path CSS/JS absolute di production
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -52,5 +53,8 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, '../dist/client'),
     emptyOutDir: true,
+  },
+  server: {
+    allowedHosts: ['techscoop.fly.dev', 'localhost', '127.0.0.1'],
   },
 });

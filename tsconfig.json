@@ -5,7 +5,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
-    "outDir": "dist/server",
+    "outDir": "dist",
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
