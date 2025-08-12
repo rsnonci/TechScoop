@@ -3,10 +3,16 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: ["class"],
   content: [
-    "./client/index.html",
-    "./client/src/**/*.{js,jsx,ts,tsx}",
-    "./shared/**/*.{js,ts,jsx,tsx}", // kalau ada file UI di shared
-    "./server/**/*.{js,ts,jsx,tsx}", // kalau ada SSR component
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "../shared/**/*.{js,ts,jsx,tsx}",
+    "../server/**/*.{js,ts,jsx,tsx}",
+  ],
+  safelist: [
+    'bg-background',
+    'text-foreground',
+    'border-border',
+    // semua class yang di-generate pakai var()
   ],
   theme: {
     extend: {

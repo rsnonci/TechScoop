@@ -36,14 +36,15 @@
 //   },
 // });
 
+// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: path.resolve(__dirname), // ini tetap /client
-  base: '/', // penting supaya path CSS/JS absolute di production
+  root: path.resolve(__dirname), // folder client
+  base: '/', // ini buat root domain
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -51,8 +52,9 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: path.resolve(__dirname, '../dist/client'),
+    outDir: '../dist/client',
     emptyOutDir: true,
+    cssCodeSplit: false, // <-- ini penting biar CSS selalu inline ke 1 file dan di-link
   },
   server: {
     allowedHosts: ['techscoop.fly.dev', 'localhost', '127.0.0.1'],
